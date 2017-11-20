@@ -2,5 +2,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="triangle" class="com.bilyk.Triangle" />
+    <bean id="triangle" class="com.bilyk.Triangle" name="triangle-name">
+        <property name="pointA" ref="tricky-point">
+        </property>
+        <property name="pointB">
+            <bean class="com.bilyk.Point">
+                <property name="x" value="-20"/>
+                <property name="y" value="0"/>
+            </bean>
+        </property>
+        <property name="pointC">
+            <bean class="com.bilyk.Point">
+                <property name="x" value="0"/>
+                <property name="y" value="20"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="point1" class="com.bilyk.Point">
+        <property name="x" value="0"/>
+        <property name="y" value="0"/>
+    </bean>
+
+    <alias name="point1" alias="tricky-point" />
+    <alias name="triangle" alias="triangle-alias"/>
 </beans>
