@@ -13,6 +13,23 @@ public class InjectRandomPointBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Field[] fields = bean.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Class<?> type = field.getType();
+            if (type == Point.class) {
+                System.out.println("Field type:" + type);
+                try {
+                    Point point = new Point();
+                    field.get(bean);
+                    System.out.println("Point object: " + point);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(field.getName());
+            }
+        }
+
         for (Field field : fields) {
             InjectRandomPoint annotation = field.getAnnotation(InjectRandomPoint.class);
             if (annotation != null) {

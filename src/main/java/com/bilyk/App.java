@@ -9,7 +9,7 @@ public class App
     {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         context.registerShutdownHook();
-        Triangle triangle1 = (Triangle) context.getBean("triangle1");
-        triangle1.draw();
+        Shape circle = (Shape) context.getBean("circle");
+        circle.draw();
     }
 }

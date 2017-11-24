@@ -5,5 +5,5 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BeanDeprecated {
-    public Class newClass() default  Class.class;
+    Class newClass() default  Class.class;
 }

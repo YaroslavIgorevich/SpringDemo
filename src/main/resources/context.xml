@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-init-method="init"
-       default-destroy-method="clean">
-    <bean id="deprecatedBeanFactoryPostProcessor" class="com.bilyk.DeprecatedBeanFactoryPostProcessor" />
-    <bean id="injectRandomPointBeanPostProcessor" class="com.bilyk.InjectRandomPointBeanPostProcessor" />
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="com.bilyk" />
 
-    <bean id="triangle1" class="com.bilyk.Triangle"/>
+    <bean id="triangle" class="com.bilyk.Triangle">
+        <property name="pointA" ref="pointA"/>
+        <!--<property name="pointB" ref="pointB"/>
+        <property name="pointC" ref="pointC"/>-->
+    </bean>
+
+    <bean id="circle" class="com.bilyk.Circle" />
 
     <bean id="pointA" class="com.bilyk.Point">
         <property name="x" value="0"/>
@@ -15,6 +23,7 @@
     </bean>
 
     <bean id="pointB" class="com.bilyk.Point">
+        <qualifier value="circleRelated"/>
         <property name="x" value="-20"/>
         <property name="y" value="0"/>
     </bean>
@@ -23,4 +32,5 @@
         <property name="x" value="0"/>
         <property name="y" value="20"/>
     </bean>
+
 </beans>
