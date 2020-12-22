@@ -5,6 +5,7 @@ public class AdvancedTriangle {
     @Override
     public String toString() {
         // test comment
+        // test comment
         return "This is advanced triangle object";
     }
 }
